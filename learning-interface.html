@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Interface - Tuto</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body class="flex flex-col min-h-screen font-sans">
+    <!-- Navigation -->
+    <nav class="flex justify-between items-center px-6 py-4 bg-white/5 backdrop-blur-sm border-b border-white/10" role="navigation" aria-label="Main navigation">
+        <div class="flex items-center gap-4">
+            <a href="index.html" class="text-2xl font-bold text-white">Tuto</a>
+            <div class="hidden md:flex items-center gap-6 ml-8">
+                <a href="dashboard.html" class="text-gray-400 hover:text-white transition-colors duration-200">Dashboard</a>
+                <a href="all-study-plans.html" class="text-gray-400 hover:text-white transition-colors duration-200">Study Plans</a>
+                <a href="create-plan.html" class="text-gray-400 hover:text-white transition-colors duration-200">Create Plan</a>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors duration-200">
+                <span>Login</span>
+            </button>
+            <!-- Theme toggle button -->
+            <button 
+                id="themeToggle" 
+                class="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-transparent" 
+                aria-label="Toggle dark/light theme"
+                title="Toggle theme"
+            >
+                <!-- Theme icon -->
+                <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 18a6 6 0 110-12 6 6 0 010 12z" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Learning Header -->
+    <header class="px-6 py-6 bg-gradient-to-r from-green-600/20 to-blue-600/20 border-b border-white/10">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 id="planTitle" class="text-3xl font-bold text-white mb-2">JavaScript Fundamentals</h1>
+                    <p id="planDescription" class="text-gray-300">Master the basics of JavaScript programming language</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="text-right">
+                        <p class="text-sm text-gray-400">Progress</p>
+                        <p id="overallProgress" class="text-2xl font-bold text-green-400">0%</p>
+                    </div>
+                    <div class="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center border-2 border-green-500/30">
+                        <span id="progressIcon" class="text-2xl">📚</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Learning Content -->
+    <main class="flex-1 flex">
+        <!-- Sidebar - Lesson Navigation -->
+        <aside class="w-80 bg-white/5 backdrop-blur-sm border-r border-white/10 overflow-y-auto">
+            <div class="p-6">
+                <h2 class="text-lg font-semibold text-white mb-4">Lessons</h2>
+                <div id="lessonList" class="space-y-2">
+                    <!-- Lessons will be populated by JavaScript -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 overflow-y-auto">
+            <div class="max-w-4xl mx-auto p-8">
+                <!-- Lesson Content -->
+                <div id="lessonContent" class="mb-8">
+                    <!-- Lesson content will be populated by JavaScript -->
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="flex items-center justify-between pt-8 border-t border-white/10">
+                    <button id="prevLesson" class="flex items-center px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg font-medium transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                        Previous Lesson
+                    </button>
+                    
+                    <div class="flex items-center gap-4">
+                        <button id="markComplete" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors duration-200">
+                            Mark Complete
+                        </button>
+                        <button id="takeQuiz" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-200">
+                            Take Quiz
+                        </button>
+                        <button id="openChatbot" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition-colors duration-200 flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                            AI Assistant
+                        </button>
+                    </div>
+
+                    <button id="nextLesson" class="flex items-center px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg font-medium transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                        Next Lesson
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+                <!-- Quiz Modal -->
+            <div id="quizModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden z-50">
+                <div class="flex items-center justify-center min-h-screen p-4">
+                    <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-2xl font-bold text-white">Lesson Quiz</h2>
+                            <button id="closeQuiz" class="text-gray-400 hover:text-white transition-colors duration-200">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <div id="quizContent">
+                            <!-- Quiz content will be populated by JavaScript -->
+                        </div>
+                        
+                        <div class="flex justify-end mt-6">
+                            <button id="submitQuiz" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors duration-200">
+                                Submit Quiz
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Chatbot Modal -->
+            <div id="chatbotModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden z-50">
+                <div class="flex items-center justify-center min-h-screen p-4">
+                    <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-2xl font-bold text-white flex items-center">
+                                <svg class="w-7 h-7 mr-3 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                </svg>
+                                AI Learning Assistant
+                            </h2>
+                            <button id="closeChatbot" class="text-gray-400 hover:text-white transition-colors duration-200">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <div class="flex gap-6">
+                            <!-- Chat Interface -->
+                            <div class="flex-1">
+                                <div id="chatMessages" class="bg-white/5 rounded-lg p-4 h-96 overflow-y-auto mb-4 border border-white/10">
+                                    <div class="text-center text-gray-400 text-sm">
+                                        <svg class="w-12 h-12 mx-auto mb-2 text-blue-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                        </svg>
+                                        <p>Ask me anything about this lesson!</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex gap-2">
+                                    <input 
+                                        type="text" 
+                                        id="chatInput" 
+                                        placeholder="Type your question here..." 
+                                        class="flex-1 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    >
+                                    <button 
+                                        id="sendMessage" 
+                                        class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-200 flex items-center"
+                                    >
+                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                                        </svg>
+                                        Send
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Quick Questions -->
+                            <div class="w-80">
+                                <h3 class="text-lg font-semibold text-white mb-4">Quick Questions</h3>
+                                <div class="space-y-3">
+                                    <button class="w-full text-left p-3 bg-white/10 hover:bg-white/20 rounded-lg border border-white/20 transition-colors duration-200 text-sm text-gray-300 hover:text-white" data-question="What are the key concepts in this lesson?">
+                                        What are the key concepts in this lesson?
+                                    </button>
+                                    <button class="w-full text-left p-3 bg-white/10 hover:bg-white/20 rounded-lg border border-white/20 transition-colors duration-200 text-sm text-gray-300 hover:text-white" data-question="Can you explain this with an example?">
+                                        Can you explain this with an example?
+                                    </button>
+                                    <button class="w-full text-left p-3 bg-white/10 hover:bg-white/20 rounded-lg border border-white/20 transition-colors duration-200 text-sm text-gray-300 hover:text-white" data-question="What are common mistakes to avoid?">
+                                        What are common mistakes to avoid?
+                                    </button>
+                                    <button class="w-full text-left p-3 bg-white/10 hover:bg-white/20 rounded-lg border border-white/20 transition-colors duration-200 text-sm text-gray-300 hover:text-white" data-question="How does this relate to other topics?">
+                                        How does this relate to other topics?
+                                    </button>
+                                    <button class="w-full text-left p-3 bg-white/10 hover:bg-white/20 rounded-lg border border-white/20 transition-colors duration-200 text-sm text-gray-300 hover:text-white" data-question="What should I practice next?">
+                                        What should I practice next?
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <!-- Floating Chatbot Button -->
+    <button id="floatingChatbot" class="fixed bottom-6 right-6 w-16 h-16 bg-purple-600 hover:bg-purple-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 z-40 flex items-center justify-center group">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+        </svg>
+        <div class="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+            AI
+        </div>
+    </button>
+
+    <!-- Notification Toast -->
+    <div id="notification" class="fixed top-4 right-4 z-50 hidden">
+        <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-6 py-4 text-white shadow-lg">
+            <div class="flex items-center">
+                <div id="notificationIcon" class="mr-3"></div>
+                <div>
+                    <p id="notificationMessage" class="font-medium"></p>
+                    <p id="notificationDescription" class="text-sm text-gray-300"></p>
+    </div>
+</header>
+
+<!-- Main Learning Content -->
+<main class="flex-1 flex">
+    <!-- Sidebar - Lesson Navigation -->
+    <aside class="w-80 bg-white/5 backdrop-blur-sm border-r border-white/10 overflow-y-auto">
+        <div class="p-6">
+            <h2 class="text-lg font-semibold text-white mb-4">Lessons</h2>
+            <div id="lessonList" class="space-y-2">
+                <!-- Lessons will be populated by JavaScript -->
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="flex-1 overflow-y-auto">
+        <div class="max-w-4xl mx-auto p-8">
+            <!-- Lesson Content -->
+            <div id="lessonContent" class="mb-8">
+                <!-- Lesson content will be populated by JavaScript -->
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex items-center justify-between pt-8 border-t border-white/10">
+                <button id="prevLesson" class="flex items-center px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg font-medium transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Previous Lesson
+                </button>
+                
+                <div class="flex items-center gap-4">
+                    <button id="markComplete" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors duration-200">
+                        Mark Complete
+                    </button>
+                    <button id="takeQuiz" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-200">
+                        Take Quiz
+                    </button>
+                    <button id="openChatbot" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition-colors duration-200 flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                        AI Assistant
+                    </button>
+                </div>
+
+                <button id="nextLesson" class="flex items-center px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg font-medium transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                    Next Lesson
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Quiz Modal -->
+<div id="quizModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden z-50">
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-white">Lesson Quiz</h2>
+                <button id="closeQuiz" class="text-gray-400 hover:text-white transition-colors duration-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div id="quizContent">
+                <!-- Quiz content will be populated by JavaScript -->
+            </div>
+            
+            <div class="flex justify-end mt-6">
+                <button id="submitQuiz" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors duration-200">
+                    Submit Quiz
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- AI Chatbot Modal -->
+<div id="chatbotModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden z-50">
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-white flex items-center">
+                    <svg class="w-7 h-7 mr-3 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                    AI Learning Assistant
+                </h2>
+                <button id="closeChatbot" class="text-gray-400 hover:text-white transition-colors duration-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="flex gap-6">
+                <!-- Chat Interface -->
+                <div class="flex-1">
+                    <div id="chatMessages" class="bg-white/5 rounded-lg p-4 h-96 overflow-y-auto mb-4 border border-white/10">
+                        <div class="text-center text-gray-400 text-sm">
+                            <svg class="w-12 h-12 mx-auto mb-2 text-blue-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                            </svg>
+                            <p>Ask me anything about this lesson!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-2">
+                        <input 
+                            type="text" 
+                            id="chatInput" 
+                            placeholder="Type your question here..." 
+                            class="flex-1 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        >
+                        <button 
+                            id="sendMessage" 
+                            class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-200 flex items-center"
+                        >
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                            </svg>
+                            Send
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Quick Questions -->
+                <div class="w-80">
+                    <h3 class="text-lg font-semibold text-white mb-4">Quick Questions</h3>
+                    <div class="space-y-3">
+                        <button class="w-full text-left p-3 bg-white/10 hover:bg-white/20 rounded-lg border border-white/20 transition-colors duration-200 text-sm text-gray-300 hover:text-white" data-question="What are the key concepts in this lesson?">
+                            What are the key concepts in this lesson?
+                        </button>
+                        <button class="w-full text-left p-3 bg-white/10 hover:bg-white/20 rounded-lg border border-white/20 transition-colors duration-200 text-sm text-gray-300 hover:text-white" data-question="Can you explain this with an example?">
+                            Can you explain this with an example?
+                        </button>
+                        <button class="w-full text-left p-3 bg-white/10 hover:bg-white/20 rounded-lg border border-white/20 transition-colors duration-200 text-sm text-gray-300 hover:text-white" data-question="What are common mistakes to avoid?">
+                            What are common mistakes to avoid?
+                        </button>
+                        <button class="w-full text-left p-3 bg-white/10 hover:bg-white/20 rounded-lg border border-white/20 transition-colors duration-200 text-sm text-gray-300 hover:text-white" data-question="How does this relate to other topics?">
+                            How does this relate to other topics?
+                        </button>
+                        <button class="w-full text-left p-3 bg-white/10 hover:bg-white/20 rounded-lg border border-white/20 transition-colors duration-200 text-sm text-gray-300 hover:text-white" data-question="What should I practice next?">
+                            What should I practice next?
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Floating Chatbot Button -->
+<button id="floatingChatbot" class="fixed bottom-6 right-6 w-16 h-16 bg-purple-600 hover:bg-purple-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 z-40 flex items-center justify-center group">
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+    </svg>
+    <div class="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+        AI
+    </div>
+</button>
+
+<!-- Notification Toast -->
+<div id="notification" class="fixed top-4 right-4 z-50 hidden">
+    <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-6 py-4 text-white shadow-lg">
+        <div class="flex items-center">
+            <div id="notificationIcon" class="mr-3"></div>
+            <div>
+                <p id="notificationMessage" class="font-medium"></p>
+                <p id="notificationDescription" class="text-sm text-gray-300"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="env.js"></script>
+<script src="config.js"></script>
+<script src="api-service.js"></script>
+<script src="learning-interface.js"></script>
+</body>
+</html>

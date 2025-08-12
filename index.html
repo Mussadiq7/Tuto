@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Revolutionize learning with our AI-powered tutor. Generate personalized study plans, quizzes, and flashcards." />
+  <link rel="icon" type="image/x-icon" href="tuntle.png">
+  <title>Tuto - AI-Powered Learning Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="flex flex-col min-h-screen font-sans">
+  <!-- Navbar -->
+  <nav class="flex justify-end items-end px-6 py-4" role="navigation" aria-label="Main navigation">
+    <!-- <div class="text-xl font-bold text-white">Tuto</div> -->
+    <div class="flex items-center gap-4 text-sm">
+      <a href="#" class="px-4 py-2 rounded-full text-white font-medium transition-colors duration-200" aria-current="page">Home</a>
+      <a href="dashboard.html" class="text-gray-400 hover:text-white transition-colors duration-200">Dashboard</a>
+      <button class="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors duration-200">
+        <span>Login</span>
+      </button>
+      <!-- Theme toggle button -->
+      <button 
+        id="themeToggle" 
+        class="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-transparent" 
+        aria-label="Toggle dark/light theme"
+        title="Toggle theme"
+      >
+        <!-- Theme icon -->
+        <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 18a6 6 0 110-12 6 6 0 010 12z" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <main class="flex flex-1 items-center justify-between px-6 md:px-10 py-12 md:py-20 max-w-7xl mx-auto" role="main">
+    <!-- Left: Text + Input -->
+    <div class="max-w-xl">
+      <h1 class="text-6xl md:text-7xl font-extrabold mb-4 text-white tracking-tight tuto-font">
+        Tuto
+        <!-- <span class="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">AI</span> -->
+      </h1>
+      <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+        Revolutionize learning with our AI-powered tutor. Generate study plans, quizzes and flashcards personalized to you.
+      </p>
+
+      <!-- Simple topic input form -->
+      <div class="space-y-4">
+        <div class="flex items-center bg-[#1c1d29] border border-[#2e2f3d] rounded-xl px-4 py-2 max-w-lg hover:border-green-500/50 transition-colors duration-200 focus-within:border-green-500 focus-within:ring-2 focus-within:ring-green-500/20">
+          <input 
+            id="topicInput"
+            type="text" 
+            placeholder="What would you like to learn?" 
+            class="bg-transparent focus:outline-none flex-1 text-white placeholder-gray-400 text-lg"
+            aria-label="Enter your learning topic"
+          />
+          <button 
+            id="submitBtn" 
+            class="ml-4 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-lg p-3 transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+            aria-label="Create study plan"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Loading indicator -->
+      <div id="loadingIndicator" class="hidden flex items-center justify-center text-green-400 mt-6">
+        <svg class="animate-spin h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <span>Creating your study plan...</span>
+      </div>
+      
+      <!-- Dashboard CTA -->
+      
+    </div>
+
+    <!-- Right: Clean SVG illustration -->
+    <div class="hidden lg:block relative ml-40 hero-svg">
+      <img src="tuntle.svg" alt="AI Learning Brain" class="w-80 h-auto drop-shadow-2xl" />
+    </div>
+  </main>
+
+  <!-- Why Tuto Section -->
+  <div class="min-h-dvh w-full flex flex-col lg:grid lg:grid-cols-2 lg:place-items-center px-4 sm:px-8 md:px-12 lg:px-16 py-12 lg:py-0 gap-12 lg:gap-8">
+    <!-- Left Column - ASCII Art -->
+    <div class="w-full sm:max-w-[540px] md:max-w-[640px] lg:w-[590px] flex flex-col items-center justify-center order-2 lg:order-1 mr-24">
+      <pre class="tuntle font-mono text-lg sm:text-xl md:text-xl lg:text-3xl text-center whitespace-pre leading-snug text-white">
+/^\
+|   |
+/\     |_|     /\
+| \___/' '\___/ |
+\_/  \___/  \_/
+|\__/   \__/|
+|/  \___/  \|
+./\__/   \__/\,
+| /  \___/  \ |
+\/     V     \/
+      </pre>
+    </div>
+
+    <!-- Right Column - The Vision -->
+    <div class="w-full sm:max-w-[540px] md:max-w-[640px] lg:w-[590px] flex flex-col order-1 lg:order-2">
+      <h2 class="tuto-font tracking-tighter text-4xl sm:text-5xl md:text-4xl lg:text-5xl text-white">
+        Why Tuto?
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-6 sm:mt-8">
+        <!-- Card 1: Brain -->
+        <div class="p-4 sm:p-6 rounded-lg bg-white/10 border-2 border-white/20 space-y-2 sm:space-y-3 transition-all hover:border-green-500/30">
+          <svg class="h-5 w-5 sm:h-6 sm:w-6 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9.5 2C7.01472 2 5 4.01472 5 6.5C5 7.31063 5.21628 8.1807 5.60108 9H3L2.5 9.5L3 10H5.10108C5.03225 10.3284 5 10.6611 5 11C5 12.12548 5.37273 13.16434 6 13.94531L6 15.5C6 16.8807 7.11929 18 8.5 18H9.5C10.8807 18 12 16.8807 12 15.5L12 13.94531C12.6273 13.16434 13 12.12548 13 11C13 10.6611 12.9677 10.3284 12.8989 10H15L15.5 9.5L15 9H12.8989C12.7837 8.1807 13 7.31063 13 6.5C13 4.01472 10.9853 2 8.5 2H9.5ZM9.5 4H8.5C8.22386 4 8 4.22386 8 4.5C8 4.77614 8.22386 5 8.5 5H9.5C9.77614 5 10 4.77614 10 4.5C10 4.22386 9.77614 4 9.5 4ZM7 6.5C7 5.11929 8.11929 4 9.5 4H8.5C7.11929 4 6 5.11929 6 6.5C6 7.88071 7.11929 9 8.5 9H9.5C10.8807 9 12 7.88071 12 6.5C12 5.11929 10.8807 4 9.5 4H8.5C7.11929 4 6 5.11929 6 6.5ZM7 11C7 10.4477 7.44772 10 8 10H10C10.5523 10 11 10.4477 11 11C11 11.5523 10.5523 12 10 12H8C7.44772 12 7 11.5523 7 11ZM8 13H10C10.5523 13 11 13.4477 11 14C11 14.5523 10.5523 15 10 15H8C7.44772 15 7 14.5523 7 14C7 13.4477 7.44772 13 8 13Z"/>
+          </svg>
+          <p class="text-base sm:text-lg text-white">Learning's hard enough. Let AI do the organizing.</p>
+        </div>
+
+        <!-- Card 2: Clock -->
+        <div class="p-4 sm:p-6 rounded-lg bg-white/10 border-2 border-white/20 space-y-2 sm:space-y-3 transition-all hover:border-green-500/30">
+          <svg class="h-5 w-5 sm:h-6 sm:w-6 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+          <p class="text-base sm:text-lg text-white">Take it one day at a time. That's all you need.</p>
+        </div>
+
+        <!-- Card 3: Brain -->
+        <div class="p-4 sm:p-6 rounded-lg bg-white/10 border-2 border-white/20 space-y-2 sm:space-y-3 transition-all hover:border-green-500/30">
+          <svg class="h-5 w-5 sm:h-6 sm:w-6 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9.5 2C7.01472 2 5 4.01472 5 6.5C5 7.31063 5.21628 8.1807 5.60108 9H3L2.5 9.5L3 10H5.10108C5.03225 10.3284 5 10.6611 5 11C5 12.12548 5.37273 13.16434 6 13.94531L6 15.5C6 16.8807 7.11929 18 8.5 18H9.5C10.8807 18 12 16.8807 12 15.5L12 13.94531C12.6273 13.16434 13 12.12548 13 11C13 10.6611 12.9677 10.3284 12.8989 10H15L15.5 9.5L15 9H12.8989C12.7837 8.1807 13 7.31063 13 6.5C13 4.01472 10.9853 2 8.5 2H9.5ZM9.5 4H8.5C8.22386 4 8 4.22386 8 4.5C8 4.77614 8.22386 5 8.5 5H9.5C9.77614 5 10 4.77614 10 4.5C10 4.22386 9.77614 4 9.5 4ZM7 6.5C7 5.11929 8.11929 4 9.5 4H8.5C7.11929 4 6 5.11929 6 6.5C6 7.88071 7.11929 9 8.5 9H9.5C10.8807 9 12 7.88071 12 6.5C12 5.11929 10.8807 4 9.5 4H8.5C7.11929 4 6 5.11929 6 6.5ZM7 11C7 10.4477 7.44772 10 8 10H10C10.5523 10 11 10.4477 11 11C11 11.5523 10.5523 12 10 12H8C7.44772 12 7 11.5523 7 11ZM8 13H10C10.5523 13 11 13.4477 11 14C11 14.5523 10.5523 15 10 15H8C7.44772 15 7 14.5523 7 14C7 13.4477 7.44772 13 8 13Z"/>
+          </svg>
+          <p class="text-base sm:text-lg text-white">Every mind learns differently. We get that.</p>
+        </div>
+
+        <!-- Card 4: Turtle -->
+        <div class="p-4 sm:p-6 rounded-lg bg-white/10 border-2 border-white/20 space-y-2 sm:space-y-3 transition-all hover:border-green-500/30">
+          <svg class="h-5 w-5 sm:h-6 sm:w-6 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+          <p class="text-base sm:text-lg text-white">Like our turtle friend says: steady wins the race.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="px-6 py-8 text-center text-gray-400 text-sm">
+    <p>&copy; 2024 Tuto. Empowering learners with AI-driven education.</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
