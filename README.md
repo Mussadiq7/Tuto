@@ -5,7 +5,6 @@ Revolutionize learning with our AI-powered tutor. Generate personalized study pl
 <!-- Badges -->
 <p align="left">
   <img alt="Status" src="https://img.shields.io/badge/status-active-success" />
-  <img alt="License" src="https://img.shields.io/badge/license-MIT-blue" />
   <img alt="Built with" src="https://img.shields.io/badge/built%20with-HTML%2FCSS%2FJS-orange" />
   <img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen" />
 </p>
@@ -52,14 +51,6 @@ Revolutionize learning with our AI-powered tutor. Generate personalized study pl
 - **Responsive Design**: Optimized for all device sizes
 - **Theme Consistency**: Maintains the same theme across all pages
 
-## Pages
-
-1. **`index.html`** - Main landing page with AI tutor interface
-2. **`dashboard.html`** - Comprehensive learning dashboard
-3. **`create-plan.html`** - Study plan creation tool
-4. **`all-study-plans.html`** - Comprehensive view of all study plans with filtering and search
-5. **`learning-interface.html`** - Interactive learning interface for individual study plans
-
 ## Technologies Used
 
 - **Frontend**: HTML5, CSS3, JavaScript (ES6+)
@@ -90,12 +81,6 @@ window.ENV = {
 };
 ```
 
-3) Ensure pages that call AI load `env.js` before `config.js` and your page scripts. Already configured in:
-
-- `create-plan.html`: loads `env.js` then `config.js` then `create-plan.js`
-- `all-study-plans.html`: loads `env.js`, `config.js`, `api-service.js`, `all-study-plans.js`
-- `learning-interface.html`: loads `env.js`, `config.js`, `api-service.js`, `learning-interface.js`
-
 ## Getting Started
 
 1. Clone the repository
@@ -109,58 +94,6 @@ window.ENV = {
 - `config.js` now reads keys from `window.ENV` and contains no secrets.
 - For public deployments, route AI calls through a backend to avoid exposing keys in the browser.
 
-## Git Workflow (first push)
-
-Run these commands from the project root:
-
-```bash
-git init
-git add .
-git commit -m "chore: prepare repo, add env loader and docs"
-git branch -M main
-git remote add origin <YOUR_REPO_URL>
-git push -u origin main
-```
-
-## Dashboard Features in Detail
-
-### Progress Visualization
-- Line charts showing study time trends
-- Time period selectors (7 days, 30 days, 3 months)
-- Responsive chart design with theme support
-
-### Interactive Elements
-- Hover effects on stat cards
-- Click animations on action buttons
-- Real-time notifications system
-- Keyboard shortcuts (Ctrl+N for new topic, Ctrl+Q for quiz)
-
-### Data Management
-- Local storage for theme preferences
-- Mock data system for demonstration
-- Extensible architecture for API integration
-
-### Accessibility
-- ARIA labels and semantic HTML
-- Keyboard navigation support
-- High contrast mode support
-- Reduced motion preferences
-
-## Customization
-
-The dashboard is built with modularity in mind:
-- Easy to modify color schemes
-- Configurable chart options
-- Extensible action system
-- Theme-aware styling
-
-## Browser Support
-
-- Chrome 80+
-- Firefox 75+
-- Safari 13+
-- Edge 80+
-
-## License
 
 © 2024 Tuto. Empowering learners with AI-driven education.
+
