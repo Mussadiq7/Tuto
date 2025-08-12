@@ -94,6 +94,8 @@ window.ENV = {
 - `config.js` now reads keys from `window.ENV` and contains no secrets.
 - For public deployments, route AI calls through a backend to avoid exposing keys in the browser.
 
+Inspired from https://github.com/lalitm1004/cogito-tutor.git
 
 © 2024 Tuto. Empowering learners with AI-driven education.
+
 
