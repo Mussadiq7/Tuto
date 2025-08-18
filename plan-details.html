@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Details - Tuto</title>
+    <link rel="preload" href="./assets/fonts/bespoke-stencil/BespokeStencil-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./assets/fonts/supreme/Supreme-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="./css/styles.css" rel="stylesheet">
+</head>
+<body class="flex flex-col min-h-screen font-sans">
+    <!-- Navigation -->
+    <nav class="flex justify-between items-center px-6 py-4" role="navigation" aria-label="Main navigation">
+        <div class="text-xl font-bold text-white">Tuto</div>
+        <div class="flex items-center gap-4 text-sm">
+            <a href="index.html" class="text-gray-400 hover:text-white transition-colors duration-200">Home</a>
+            <a href="dashboard.html" class="text-gray-400 hover:text-white transition-colors duration-200">Dashboard</a>
+            <a href="all-study-plans.html" class="text-gray-400 hover:text-white transition-colors duration-200">Study Plans</a>
+            <button class="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors duration-200">
+                <span>Login</span>
+            </button>
+            
+            <button 
+                id="themeToggle" 
+                class="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-transparent" 
+                aria-label="Toggle dark/light theme"
+                title="Toggle theme"
+            >
+                
+                <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 18a6 6 0 110-12 6 6 0 010 12z" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-1 px-6 py-8">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="mb-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <a href="all-study-plans.html" class="text-gray-400 hover:text-white transition-colors duration-200">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </a>
+                    <span class="text-gray-400">/</span>
+                    <span class="text-white">Plan Details</span>
+                </div>
+                <h1 class="text-4xl font-bold text-white mb-2" id="planTitle">Loading...</h1>
+                <p class="text-gray-300 text-lg" id="planSubtitle">Loading plan details...</p>
+            </div>
+
+            <!-- Plan Overview -->
+            <div class="mb-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-green-400 mb-2" id="overallProgress">0%</div>
+                        <div class="text-gray-400 text-sm">Overall Progress</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-blue-400 mb-2" id="totalDays">0</div>
+                        <div class="text-gray-400 text-sm">Total Days</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-purple-400 mb-2" id="completedDays">0</div>
+                        <div class="text-gray-400 text-sm">Completed Days</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-orange-400 mb-2" id="timePerDay">0</div>
+                        <div class="text-gray-400 text-sm">Minutes/Day</div>
+                    </div>
+                </div>
+                
+                <div class="mt-6">
+                    <div class="w-full bg-white/10 rounded-full h-3">
+                        <div class="bg-gradient-to-r from-green-500 to-green-600 h-3 rounded-full transition-all duration-1000" id="progressBar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plan Information -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                <!-- Left Column: Plan Details -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                        <h3 class="text-lg font-bold text-white mb-4">Plan Information</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="text-gray-400 text-sm">Topic</label>
+                                <p class="text-white font-medium" id="planTopic">-</p>
+                            </div>
+                            <div>
+                                <label class="text-gray-400 text-sm">Duration</label>
+                                <p class="text-white font-medium" id="planDuration">-</p>
+                            </div>
+                            <div>
+                                <label class="text-gray-400 text-sm">Difficulty</label>
+                                <p class="text-white font-medium" id="planDifficulty">-</p>
+                            </div>
+                            <div>
+                                <label class="text-gray-400 text-sm">Time per Day</label>
+                                <p class="text-white font-medium" id="planTimePerDay">-</p>
+                            </div>
+                            <div>
+                                <label class="text-gray-400 text-sm">Created</label>
+                                <p class="text-white font-medium" id="planCreated">-</p>
+                            </div>
+                            <div>
+                                <label class="text-gray-400 text-sm">Status</label>
+                                <p class="text-white font-medium" id="planStatus">-</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 pt-6 border-t border-white/10">
+                            <h4 class="text-white font-medium mb-3">Learning Styles</h4>
+                            <div id="learningStyles" class="flex flex-wrap gap-2">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Plan Overview -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                        <h3 class="text-lg font-bold text-white mb-4">Plan Overview</h3>
+                        <p class="text-gray-300 leading-relaxed mb-6" id="planOverview">
+                            Loading plan overview...
+                        </p>
+                        
+                        <div class="flex gap-4">
+                            <button id="startLearningBtn" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors duration-200 flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Start Learning
+                            </button>
+                            <button id="editPlanBtn" class="px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg font-medium transition-colors duration-200 flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                </svg>
+                                Edit Plan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Daily Schedule -->
+            <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-bold text-white">Daily Learning Schedule</h3>
+                    <div class="flex items-center gap-2">
+                        <button id="viewAllDays" class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg text-sm font-medium transition-colors duration-200">
+                            View All Days
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="dailySchedule" class="space-y-4">
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="px-6 py-8 text-center text-gray-400 text-sm">
+        <p>&copy; 2024 Tuto. Empowering learners with AI-driven education.</p>
+    </footer>
+
+    <script src="./js/env.js"></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/plan-details.js"></script>
+</body>
+</html>

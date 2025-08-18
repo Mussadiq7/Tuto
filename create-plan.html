@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Create your personalized study plan with Tuto's AI-powered learning platform." />
+  <link rel="icon" type="image/x-icon" href="./assets/images/tuntle.png">
+  <title>Create Plan - Tuto</title>
+  <link rel="preload" href="./assets/fonts/bespoke-stencil/BespokeStencil-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/supreme/Supreme-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body class="flex flex-col min-h-screen font-sans">
+  <!-- Navbar -->
+  <nav class="flex justify-between items-center px-6 py-4" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="text-xl font-bold text-white tuto-font">Tuto</a>
+    <div class="flex items-center gap-4 text-sm">
+      <a href="index.html" class="text-gray-400 hover:text-white transition-colors duration-200">Home</a>
+      <a href="#" class="px-4 py-2 rounded-full text-white font-medium transition-colors duration-200 bg-white/10" aria-current="page">Create Plan</a>
+      <button class="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors duration-200">
+        <span>Login</span>
+      </button>
+      
+      <button 
+        id="themeToggle" 
+        class="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-transparent" 
+        aria-label="Toggle dark/light theme"
+        title="Toggle theme"
+      >
+        
+        <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 18a6 6 0 110-12 6 6 0 010 12z" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="flex-1 px-6 md:px-10 py-8 max-w-6xl mx-auto" role="main">
+    <!-- Header Section -->
+    <div class="mb-8">
+      <div class="flex items-center gap-3 mb-4">
+        <a href="index.html" class="text-gray-400 hover:text-white transition-colors duration-200">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </a>
+        <span class="text-gray-400">/</span>
+        <span class="text-white">Create Plan</span>
+      </div>
+      
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-2 tuto-font">
+        Your Study Plan
+      </h1>
+      <p class="text-lg text-gray-300" id="topicDisplay">
+        Loading your topic...
+      </p>
+    </div>
+
+    <!-- Preferences Form (Initial State) -->
+    <div id="preferencesForm" class="max-w-2xl mx-auto">
+      <div class="bg-white/5 rounded-xl p-8 border border-white/10">
+        <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+          <svg class="w-6 h-6 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"/>
+          </svg>
+          Customize Your Plan
+        </h2>
+        <p class="text-gray-300 mb-8">
+          Tell us about your learning preferences so we can create the perfect study plan for you.
+        </p>
+
+        <form id="planPreferencesForm" class="space-y-6">
+          <!-- Duration -->
+          <div>
+            <label for="duration" class="block text-white font-medium mb-3">Study Duration</label>
+            <div class="flex items-center gap-4">
+              <input 
+                type="range" 
+                id="duration" 
+                min="1" 
+                 max="30" 
+                value="14" 
+                class="flex-1 h-2 bg-white/20 rounded-lg appearance-none cursor-pointer slider"
+              />
+              <span id="durationValue" class="text-green-500 font-semibold min-w-[60px]">14 days</span>
+            </div>
+             <p class="text-gray-400 text-sm mt-2">Choose between 1 day and 30 days</p>
+          </div>
+
+          <!-- Difficulty Level -->
+          <div>
+            <label for="difficulty" class="block text-white font-medium mb-3">Difficulty Level</label>
+            <select id="difficulty" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+              <option value="beginner">Beginner - New to the topic</option>
+              <option value="intermediate" selected>Intermediate - Some experience</option>
+              <option value="advanced">Advanced - Experienced learner</option>
+            </select>
+          </div>
+
+                     <!-- Time per Day -->
+           <div>
+             <label for="timePerDay" class="block text-white font-medium mb-3">Time per Day</label>
+             
+             <!-- Quick Options -->
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
+               <label class="flex items-center p-3 bg-white/10 border border-white/20 rounded-lg cursor-pointer hover:border-green-500/50 transition-colors">
+                 <input type="radio" name="timePerDay" value="30" class="sr-only" checked>
+                 <span class="text-white font-medium">30 min</span>
+               </label>
+               <label class="flex items-center p-3 bg-white/10 border border-white/20 rounded-lg cursor-pointer hover:border-green-500/50 transition-colors">
+                 <input type="radio" name="timePerDay" value="60" class="sr-only">
+                 <span class="text-white font-medium">1 hour</span>
+               </label>
+                <label class="flex items-center p-3 bg-white/10 border border-white/20 rounded-lg cursor-pointer hover:border-green-500/50 transition-colors">
+                  <input type="radio" name="timePerDay" value="120" class="sr-only">
+                  <span class="text-white font-medium">2 hours</span>
+                </label>
+             </div>
+             
+             <!-- Custom Time Input -->
+             <div class="flex items-center gap-3">
+                <label class="flex items-center p-2 bg-white/10 border border-white/20 rounded-lg cursor-pointer hover:border-green-500/50 transition-colors">
+                 <input type="radio" name="timePerDay" value="custom" class="sr-only" id="customTimeRadio">
+                  <span class="text-white font-medium text-sm">Custom</span>
+               </label>
+                <div class="flex items-center gap-2 flex-1">
+                 <input 
+                   type="number" 
+                   id="customTimeInput" 
+                   min="5" 
+                   max="480" 
+                   placeholder="30" 
+                    class="flex-1 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white text-center focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                   disabled
+                 />
+                 <span class="text-white text-sm">minutes</span>
+               </div>
+             </div>
+             <p class="text-gray-400 text-sm mt-2">Choose from quick options or set a custom time (5-480 minutes)</p>
+           </div>
+
+          <!-- Learning Style (Optional) -->
+          <div>
+            <label class="block text-white font-medium mb-3">Learning Style (Optional)</label>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <label class="flex items-center p-3 bg-white/10 border border-white/20 rounded-lg cursor-pointer hover:border-green-500/50 transition-colors">
+                <input type="checkbox" name="learningStyle" value="visual" class="mr-3">
+                <span class="text-white">Visual Learner</span>
+              </label>
+              <label class="flex items-center p-3 bg-white/10 border border-white/20 rounded-lg cursor-pointer hover:border-green-500/50 transition-colors">
+                <input type="checkbox" name="learningStyle" value="hands-on" class="mr-3">
+                <span class="text-white">Hands-on Practice</span>
+              </label>
+              <label class="flex items-center p-3 bg-white/10 border border-white/20 rounded-lg cursor-pointer hover:border-green-500/50 transition-colors">
+                <input type="checkbox" name="learningStyle" value="theory" class="mr-3">
+                <span class="text-white">Theory Focused</span>
+              </label>
+              <label class="flex items-center p-3 bg-white/10 border border-white/20 rounded-lg cursor-pointer hover:border-green-500/50 transition-colors">
+                <input type="checkbox" name="learningStyle" value="projects" class="mr-3">
+                <span class="text-white">Project Based</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Generate Plan Button -->
+          <div class="pt-6">
+            <button 
+              type="submit"
+              id="generatePlanBtn"
+              class="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-transparent"
+            >
+              <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+              Generate My Study Plan
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="hidden flex flex-col items-center justify-center py-20">
+      <div class="relative">
+        <div class="w-16 h-16 border-4 border-green-500/20 border-t-green-500 rounded-full animate-spin"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+           <img src="./assets/images/tuntle.png" alt="Tuto" class="w-8 h-8 opacity-80" />
+        </div>
+      </div>
+      <p class="text-white text-lg mt-6 text-center">
+        Creating your personalized study plan...
+      </p>
+      <p class="text-gray-400 text-sm mt-2 text-center max-w-md">
+        Our AI is analyzing your preferences and crafting the perfect learning journey for you.
+      </p>
+    </div>
+
+    <!-- Study Plan Content (Hidden initially) -->
+    <div id="studyPlanContent" class="hidden space-y-8">
+      <!-- Success Header -->
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center justify-center w-20 h-20 bg-green-500/20 rounded-full mb-4 border-2 border-green-500/30">
+          <svg class="w-10 h-10 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">Your Study Plan is Ready! 🎉</h1>
+        <p class="text-gray-300 text-lg">We've crafted a personalized learning journey just for you</p>
+      </div>
+
+      <!-- Overview Section -->
+      <section class="bg-gradient-to-br from-white/5 to-white/10 rounded-2xl p-8 border border-white/20 shadow-xl">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="p-3 bg-green-500/20 rounded-xl">
+            <svg class="w-7 h-7 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          </div>
+          <h2 class="text-2xl font-bold text-white">Plan Overview</h2>
+        </div>
+        
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div class="bg-gradient-to-br from-green-500/10 to-green-600/10 rounded-xl p-6 border border-green-500/20">
+            <div class="flex items-center justify-between mb-3">
+              <div class="p-2 bg-green-500/20 rounded-lg">
+                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <span class="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded-full">Duration</span>
+            </div>
+            <div class="text-2xl font-bold text-green-400 mb-1" id="duration">14 days</div>
+            <div class="text-gray-400 text-sm">Complete learning journey</div>
+          </div>
+          
+          <div class="bg-gradient-to-br from-blue-500/10 to-blue-600/10 rounded-xl p-6 border border-blue-500/20">
+            <div class="flex items-center justify-between mb-3">
+              <div class="p-2 bg-blue-500/20 rounded-lg">
+                <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </div>
+              <span class="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded-full">Difficulty</span>
+            </div>
+            <div class="text-2xl font-bold text-blue-400 mb-1" id="difficulty">Intermediate</div>
+            <div class="text-gray-400 text-sm">Perfect for your level</div>
+          </div>
+          
+          <div class="bg-gradient-to-br from-purple-500/10 to-purple-600/10 rounded-xl p-6 border border-purple-500/20">
+            <div class="flex items-center justify-between mb-3">
+              <div class="p-2 bg-purple-500/20 rounded-lg">
+                <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+          </div>
+              <span class="text-xs bg-purple-500/20 text-purple-400 px-2 py-1 rounded-full">Daily Time</span>
+          </div>
+            <div class="text-2xl font-bold text-purple-400 mb-1" id="timePerDay">30 min/day</div>
+            <div class="text-gray-400 text-sm">Manageable commitment</div>
+          </div>
+        </div>
+        
+        <!-- Overview Description -->
+        <div class="bg-white/5 rounded-xl p-6 border border-white/10">
+          <h3 class="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+            <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+            What You'll Learn
+          </h3>
+          <p class="text-gray-300 leading-relaxed text-lg" id="overview">
+          This comprehensive study plan will guide you through the fundamentals and advanced concepts, 
+          with practical exercises and real-world applications to reinforce your learning.
+        </p>
+        </div>
+      </section>
+
+      <!-- Learning Schedule Section -->
+      <section class="bg-gradient-to-br from-white/5 to-white/10 rounded-2xl p-8 border border-white/20 shadow-xl">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="p-3 bg-blue-500/20 rounded-xl">
+            <svg class="w-7 h-7 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-white">Daily Learning Schedule</h2>
+            <p class="text-gray-400"></p>
+          </div>
+        </div>
+        
+        <div class="space-y-6" id="weeklyBreakdown">
+           
+        </div>
+      </section>
+
+      <section class="bg-gradient-to-br from-white/5 to-white/10 rounded-2xl p-8 border border-white/20 shadow-xl">
+        <div class="text-center mb-8">
+          <h2 class="text-2xl font-bold text-white mb-3">Ready to Begin?</h2>
+          <p class="text-gray-300">Choose your next step to start your learning journey</p>
+        </div>
+        
+        <div class="flex flex-col sm:flex-row gap-6">
+        <button 
+          id="startPlanBtn"
+            class="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold py-5 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-transparent shadow-lg hover:shadow-xl"
+        >
+            <svg class="w-6 h-6 mr-3 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          Start Learning Journey
+        </button>
+          
+        <button 
+          id="customizeBtn"
+            class="flex-1 bg-white/10 hover:bg-white/20 text-white font-semibold py-5 px-8 rounded-xl transition-all duration-300 border border-white/20 hover:border-white/40 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-transparent hover:scale-105"
+        >
+            <svg class="w-6 h-6 mr-3 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+          </svg>
+          Customize Plan
+        </button>
+        </div>
+        
+        <div class="text-center mt-6">
+          <p class="text-gray-400 text-sm">You can always come back to modify your plan later</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Error State -->
+    <div id="errorState" class="hidden flex flex-col items-center justify-center py-20">
+      <div class="text-red-500 mb-4">
+        <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+      </div>
+      <h3 class="text-xl font-bold text-white mb-2">Something went wrong</h3>
+      <p class="text-gray-400 text-center mb-6 max-w-md">
+        We couldn't create your study plan right now. Please try again or contact support if the problem persists.
+      </p>
+      <button 
+        id="retryBtn"
+        class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
+      >
+        Try Again
+      </button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="px-6 py-8 text-center text-gray-400 text-sm">
+    <p>&copy; 2024 Tuto. Empowering learners with AI-driven education.</p>
+  </footer>
+
+  <script src="./js/env.js"></script>
+  <script src="./js/config.js"></script>
+  <script src="./js/create-plan.js" defer></script>
+</body>
+</html>

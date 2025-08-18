@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Interface - Tuto</title>
+    <link rel="preload" href="./assets/fonts/bespoke-stencil/BespokeStencil-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./assets/fonts/supreme/Supreme-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="./css/styles.css" rel="stylesheet">
+</head>
+<body class="flex flex-col min-h-screen font-sans">
+    <!-- Navigation -->
+    <nav class="flex justify-between items-center px-6 py-4" role="navigation" aria-label="Main navigation">
+        <div class="text-xl font-bold text-white">Tuto</div>
+        <div class="flex items-center gap-4 text-sm">
+            <a href="index.html" class="text-gray-400 hover:text-white transition-colors duration-200">Home</a>
+                <a href="dashboard.html" class="text-gray-400 hover:text-white transition-colors duration-200">Dashboard</a>
+                <a href="all-study-plans.html" class="text-gray-400 hover:text-white transition-colors duration-200">Study Plans</a>
+            <button class="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors duration-200">
+                <span>Login</span>
+            </button>
+            
+            <button 
+                id="themeToggle" 
+                class="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-transparent" 
+                aria-label="Toggle dark/light theme"
+                title="Toggle theme"
+            >
+                
+                <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 18a6 6 0 110-12 6 6 0 010 12z" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-1 px-6 py-8">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="mb-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <a href="all-study-plans.html" class="text-gray-400 hover:text-white transition-colors duration-200">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </a>
+                    <span class="text-gray-400">/</span>
+                    <span class="text-white">Learning</span>
+                </div>
+                <h1 class="text-4xl font-bold text-white mb-2" id="planTitle">Loading...</h1>
+                <p class="text-gray-300 text-lg" id="planSubtitle">Loading your learning journey...</p>
+            </div>
+
+            <!-- Progress Overview -->
+            <div class="mb-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl font-bold text-white">Learning Progress</h2>
+                    <div class="text-right">
+                        <div class="text-2xl font-bold text-green-400" id="overallProgress">0%</div>
+                        <div class="text-gray-400 text-sm">Complete</div>
+                    </div>
+                </div>
+                <div class="w-full bg-white/10 rounded-full h-3 mb-4">
+                    <div class="bg-gradient-to-r from-green-500 to-green-600 h-3 rounded-full transition-all duration-1000" id="progressBar" style="width: 0%"></div>
+                </div>
+                <div class="flex items-center justify-between text-sm text-gray-400">
+                    <span id="currentDay">Day 0</span>
+                    <span id="totalDays">of 0 days</span>
+                </div>
+                        </div>
+                        
+            <!-- Current Day Content -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Left Column: Day Navigation -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                        <h3 class="text-lg font-bold text-white mb-4">Daily Schedule</h3>
+                        <div id="dayNavigation" class="space-y-2">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Learning Content -->
+                <div class="lg:col-span-2">
+                    <div id="learningContent" class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                        <div class="text-center py-12">
+                            <div class="w-16 h-16 mx-auto mb-4 bg-white/10 rounded-full flex items-center justify-center">
+                                <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-300 mb-2">Select a Day to Start Learning</h3>
+                            <p class="text-gray-400">Choose a day from the schedule to begin your learning journey</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="mt-8 flex justify-center gap-4">
+                <button id="prevDayBtn" class="px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg font-medium transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Previous Day
+                </button>
+                <button id="nextDayBtn" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    Next Day
+                    <svg class="w-5 h-5 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+        </div>
+    </div>
+
+            <!-- Quizzes & AI Assistant -->
+            <section class="mt-8 max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-bold text-white">Quiz</h3>
+                            <span class="text-xs px-2 py-1 rounded-full bg-blue-500/20 text-blue-300">Beta</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">Test your knowledge for the selected day with a short interactive quiz.</p>
+                        <button onclick="openQuiz(currentDayIndex)" class="px-5 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-200 w-full">
+                            Start Quiz
+                        </button>
+                    </div>
+                    <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-bold text-white">AI Assistant</h3>
+                            <span class="text-xs px-2 py-1 rounded-full bg-purple-500/20 text-purple-300">Beta</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">Ask questions or get hints tailored to today’s topics.</p>
+                        <button onclick="openAIAssistant(currentDayIndex)" class="px-5 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition-colors duration-200 w-full">
+                            Open Assistant
+                        </button>
+                    </div>
+                </div>
+            </section>
+</main>
+
+    <!-- Footer -->
+    <footer class="px-6 py-8 text-center text-gray-400 text-sm">
+        <p>&copy; 2024 Tuto. Empowering learners with AI-driven education.</p>
+    </footer>
+
+    <script src="./js/env.js"></script>
+    <script src="./js/config.js"></script>
+    <script src="./js/api-service.js"></script>
+    <script src="./js/learning-interface.js"></script>
+</body>
+</html>
